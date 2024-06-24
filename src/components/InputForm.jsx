@@ -27,7 +27,7 @@ const InputForm = ({ onSubmit }) => {
 				required
 			/>
 
-			<label htmlFor="input-key">Key:</label>
+			<label htmlFor="input-key">Shift:</label>
 			<input
 				type="number"
 				name="input-key"

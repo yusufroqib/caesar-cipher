@@ -4,13 +4,12 @@ const InputForm = ({ onSubmit }) => {
 	const [text, setText] = useState("");
 	const [key, setKey] = useState(0);
 	const [mode, setMode] = useState("encrypt");
-    const [isValid, setIsValid] = useState(false)
+	const [isValid, setIsValid] = useState(false);
 
-    useEffect(() => {
-        const valid = text.length > 0 && key >= 0 && key <= 25;
-        setIsValid(valid);
-    }, [text, key])
-    
+	useEffect(() => {
+		const valid = text.length > 0 && key > 0 && key <= 25 && key;
+		setIsValid(valid);
+	}, [text, key]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -19,7 +18,6 @@ const InputForm = ({ onSubmit }) => {
 
 	return (
 		<form onSubmit={handleSubmit}>
-
 			<label htmlFor="input-text"> Text:</label>
 			<textarea
 				value={text}
@@ -35,8 +33,8 @@ const InputForm = ({ onSubmit }) => {
 				name="input-key"
 				value={key}
 				onChange={(e) => setKey(e.target.value)}
-				placeholder="Enter key (0-25)"
-				min="0"
+				placeholder="Enter key (1-25)"
+				min="1"
 				max="25"
 				required
 			/>
@@ -49,7 +47,9 @@ const InputForm = ({ onSubmit }) => {
 				<option value="encrypt">Encrypt</option>
 				<option value="decrypt">Decrypt</option>
 			</select>
-			<button disabled={!isValid} type="submit">{mode.toUpperCase()}</button>
+			<button disabled={!isValid} type="submit">
+				{mode.toUpperCase()}
+			</button>
 		</form>
 	);
 };
